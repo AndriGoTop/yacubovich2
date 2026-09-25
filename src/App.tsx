@@ -1,5 +1,5 @@
+import WheelOfFortune from './WheelOfFortune';
+
 export default function App() {
-  return (
-    <div/>
-  );
+  return <WheelOfFortune />;
 }
