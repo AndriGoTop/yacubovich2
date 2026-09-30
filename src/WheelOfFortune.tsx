@@ -14,16 +14,16 @@ const SPECIAL: Record<string, string> = {
 // 36 секторов: 29 с очками + 7 специальных (спец. не повторяются)
 const SECTORS: string[] = [
   '350', '400', 'П',   '450', '500',  '600', '650', '700', '+',  '750',
-  '800', '850', 'К',   '950', '1000', '350', '400', '450', 'Ш',  '500',
+  '800', '850', '100',   '950', '1000', '350', '400', '450', 'Ш',  '500',
   '600', '650', '700', '750', 'Б',    '800', '850', '950', '1000','350',
   '400', '0',   '450', '500', '×2',   '600',
 ];
 
 /* ---------- Геометрия ---------- */
-const SIZE = 640;
+const SIZE = 960;
 const CX = SIZE / 2;
 const CY = SIZE / 2;
-const R = 300;
+const R = 450;
 const STEP = 360 / SECTORS.length; // 10°
 
 function polar(angleDeg: number, r: number): [number, number] {
@@ -89,13 +89,13 @@ export default function WheelOfFortune() {
           gap: 28px;
           padding: 24px;
           box-sizing: border-box;
-          background: radial-gradient(circle at 50% 30%, #1e3a8a 0%, #0b1e4d 60%, #050b22 100%);
+          background: radial-gradient(circle at 50% 30%, #781e8a 0%, #400b4d 60%, #220520 100%);
           font-family: Arial, Helvetica, sans-serif;
         }
 
         .wof-stage {
           position: relative;
-          width: min(88vw, 78vh, 640px);
+          width: min(96vw, 90vh, 960px);
           aspect-ratio: 1 / 1;
         }
 
@@ -107,15 +107,15 @@ export default function WheelOfFortune() {
 
         .wof-pointer {
           position: absolute;
-          top: -14px;
+          top: -18px;
           left: 50%;
           transform: translateX(-50%);
           width: 0;
           height: 0;
-          border-left: 22px solid transparent;
-          border-right: 22px solid transparent;
-          border-top: 48px solid #ffffff;
-          filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.6));
+          border-left: 30px solid transparent;
+          border-right: 30px solid transparent;
+          border-top: 68px solid #ffffff;
+          filter: drop-shadow(0 4px 9px rgba(0, 0, 0, 0.7));
           z-index: 5;
         }
 
@@ -125,16 +125,16 @@ export default function WheelOfFortune() {
           font-weight: 700;
           letter-spacing: 1px;
           color: #ffffff;
-          background: linear-gradient(180deg, #2563eb, #1e3a8a);
+          background: linear-gradient(180deg, #a925eb, #861e8a);
           border: 2px solid #ffffff;
           border-radius: 999px;
           cursor: pointer;
           transition: transform 0.15s, box-shadow 0.15s;
-          box-shadow: 0 6px 18px rgba(37, 99, 235, 0.55);
+          box-shadow: 0 6px 18px rgba(232, 37, 235, 0.55);
         }
         .wof-spin:hover:not(:disabled) {
           transform: translateY(-2px);
-          box-shadow: 0 10px 26px rgba(37, 99, 235, 0.8);
+          box-shadow: 0 10px 26px rgba(166, 37, 235, 0.8);
         }
         .wof-spin:active:not(:disabled) { transform: translateY(1px); }
         .wof-spin:disabled { opacity: 0.6; cursor: not-allowed; }
@@ -158,7 +158,7 @@ export default function WheelOfFortune() {
           border-radius: 26px;
           text-align: center;
           background: linear-gradient(160deg, #ffffff 0%, #dbeafe 100%);
-          border: 4px solid #1d4ed8;
+          border: 4px solid #a61dd8;
           box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
           animation: wof-pop 0.35s cubic-bezier(0.2, 1.2, 0.4, 1);
         }
@@ -168,7 +168,7 @@ export default function WheelOfFortune() {
           font-weight: 700;
           letter-spacing: 3px;
           text-transform: uppercase;
-          color: #1e3a8a;
+          color: #6d1e8a;
           margin-bottom: 14px;
         }
 
@@ -176,16 +176,16 @@ export default function WheelOfFortune() {
           font-size: clamp(60px, 14vw, 140px);
           font-weight: 900;
           line-height: 1;
-          color: #1d4ed8;
+          color: #bc1dd8;
           margin-bottom: 6px;
-          text-shadow: 0 4px 0 rgba(29, 78, 216, 0.15);
+          text-shadow: 0 4px 0 rgba(169, 29, 216, 0.15);
           word-break: break-word;
         }
 
         .wof-modal-symbol {
           font-size: clamp(24px, 4vw, 34px);
           font-weight: 800;
-          color: #1e3a8a;
+          color: #711e8a;
           letter-spacing: 2px;
           margin-bottom: 6px;
         }
@@ -196,11 +196,11 @@ export default function WheelOfFortune() {
           font-size: 18px;
           font-weight: 700;
           color: #ffffff;
-          background: linear-gradient(180deg, #2563eb, #1e3a8a);
+          background: linear-gradient(180deg, #3a3a3a, #781e8a);
           border: none;
           border-radius: 999px;
           cursor: pointer;
-          box-shadow: 0 6px 16px rgba(37, 99, 235, 0.5);
+          box-shadow: 0 6px 16px rgba(235, 37, 215, 0.5);
           transition: transform 0.15s;
         }
         .wof-modal-btn:hover { transform: translateY(-2px); }
@@ -226,16 +226,16 @@ export default function WheelOfFortune() {
         >
           <svg viewBox={`0 0 ${SIZE} ${SIZE}`} width="100%" height="100%">
             {/* Внешние кольца */}
-            <circle cx={CX} cy={CY} r={R + 14} fill="#0b1e4d" />
-            <circle cx={CX} cy={CY} r={R + 7}  fill="#ffffff" />
+            <circle cx={CX} cy={CY} r={R + 18} fill="#3d083a" />
+            <circle cx={CX} cy={CY} r={R + 10} fill="#ffffff" stroke="#7d1f92" strokeWidth="6" />
 
             {/* Сектора */}
             {SECTORS.map((label, i) => {
               const a1 = i * STEP;
               const a2 = (i + 1) * STEP;
               const isBlue = i % 2 === 1;
-              const fill = isBlue ? '#1d4ed8' : '#ffffff';
-              const textFill = isBlue ? '#ffffff' : '#1d4ed8';
+              const fill = isBlue ? '#d868ba' : '#ffffff';
+              const textFill = isBlue ? '#ffffff' : '#9c4f87';
               const [tx, ty] = polar(a1 + STEP / 2, R * 0.76);
 
               return (
@@ -264,9 +264,9 @@ export default function WheelOfFortune() {
             })}
 
             {/* Ступица */}
-            <circle cx={CX} cy={CY} r={56} fill="#0b1e4d" />
+            <circle cx={CX} cy={CY} r={56} fill="#4d0b4c" />
             <circle cx={CX} cy={CY} r={46} fill="#ffffff" />
-            <circle cx={CX} cy={CY} r={36} fill="#1d4ed8" />
+            <circle cx={CX} cy={CY} r={36} fill="#882756" />
           </svg>
         </div>
       </div>
