@@ -89,7 +89,9 @@ export default function WheelOfFortune() {
           gap: 28px;
           padding: 24px;
           box-sizing: border-box;
-          background: radial-gradient(circle at 50% 30%, #781e8a 0%, #400b4d 60%, #220520 100%);
+          background-image: url('Frame 1.png');
+          background-position: center;
+          background-size: cover;
           font-family: Arial, Helvetica, sans-serif;
         }
 
